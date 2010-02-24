@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export DIR=`dirname $0`
+export BUILD="$DIR/transform_data_aylott-build.js"
+
+cat "$DIR/TransformDataAylott.js" > "$BUILD"
+
+cat "$DIR/Source/Function.from.js"             >> "$BUILD"
+cat "$DIR/Source/Function.transformable.js"    >> "$BUILD"
+cat "$DIR/Source/Function.Xable.js"            >> "$BUILD"
+cat "$DIR/Source/Function.Xable.Observable.js" >> "$BUILD"
+
+cat "$BUILD"
