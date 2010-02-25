@@ -97,6 +97,46 @@ API ["Function.Xable"] = function(Xable){
 		
 	})
 	
+	test ("blank value on creation", function(){
+		
+		var myValue = 1000.000000000000000000000000001;
+		var transformable = Xable();
+		transformable.setValue(myValue);
+		
+		equal(transformable().value, myValue)
+		equal(typeof transformable().value, typeof myValue)
+		
+		var newValue = "$1,000.00";
+		transformable.transformers.value = formatCurrency;
+		
+		notStrictEqual(transformable().value, myValue)
+		notEqual(typeof transformable().value, typeof myValue)
+		
+		strictEqual(transformable().value, newValue)
+		equal(typeof transformable().value, typeof newValue)
+		
+	})
+	
+	test ("new operator and no arguments", function(){
+		
+		var myValue = 1000.000000000000000000000000001;
+		var transformable = new Xable;
+		transformable.setValue(myValue);
+		
+		equal(transformable().value, myValue)
+		equal(typeof transformable().value, typeof myValue)
+		
+		var newValue = "$1,000.00";
+		transformable.transformers.value = formatCurrency;
+		
+		notStrictEqual(transformable().value, myValue)
+		notEqual(typeof transformable().value, typeof myValue)
+		
+		strictEqual(transformable().value, newValue)
+		equal(typeof transformable().value, typeof newValue)
+		
+	})
+	
 	test ("setTransformer method sets the transformers.value", function(){
 		
 		var myValue = 1000.000000000000000000000000001;

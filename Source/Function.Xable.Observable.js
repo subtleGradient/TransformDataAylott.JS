@@ -1,7 +1,7 @@
 /*
 ---
 provides    : Function.Xable.Observable
-description : Lambda with multiple mutable data transformers. Implements Events. Fires "changed" when the value changes
+description : Lambda with multiple mutable data transformers. Implements Events. Fires "change" when the value changes
 requires    : 
 - Function.Xable
 # MooTools
@@ -20,7 +20,7 @@ exports.Function.Xable.Observable = function(value){
 		var newValues = old_setValue(newValue)();
 		for (var key in newValues){
 			if (newValues[key] !== oldValues[key])
-				Observable.fireEvent('changed' + (key == 'value' ? '' : ':'+key), [newValues[key], key, newValues]);
+				Observable.fireEvent('change' + (key == 'value' ? '' : ':'+key), [newValues[key], key, newValues]);
 		}
 		oldValues = newValues;
 		return Observable;

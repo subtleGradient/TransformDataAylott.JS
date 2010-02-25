@@ -2,75 +2,75 @@
 if (typeof API != 'object') var API = {};
 API ["Function.Xable.Observable"] = function(XOble){
 	
-	test ("fires the 'changed' event", function(){
+	test ("fires the 'change' event", function(){
 		
 		var myValue = 123.456
 		var newValue = 789
 		var xo = XOble(myValue)
-		var changed = false;
+		var change = false;
 		
 		ok( xo.addEvent )
-		ok( xo.addEvent('changed', function(){ changed = true }) )
-		ok(! changed )
+		ok( xo.addEvent('change', function(){ change = true }) )
+		ok(! change )
 		
 		xo.setValue(newValue)
 		
-		ok( changed )
+		ok( change )
 		
 	})
 	
-	test ("fires the 'changed' event only when the value actually changed", function(){
+	test ("fires the 'change' event only when the value actually change", function(){
 		
 		var myValue = 123.456
 		var newValue = 789
 		var xo = XOble(myValue)
-		var changed = false;
+		var change = false;
 		
 		ok( xo.addEvent )
-		ok( xo.addEvent('changed', function(){ changed = true }) )
-		ok(! changed )
+		ok( xo.addEvent('change', function(){ change = true }) )
+		ok(! change )
 		
-		changed = false;
+		change = false;
 		xo.setValue(myValue)
 		
-		ok(! changed )
+		ok(! change )
 		
-		changed = false;
+		change = false;
 		xo.setValue(String(myValue), "Must use strict comparison to determine when to fire")
-		ok( changed )
+		ok( change )
 		
-		changed = false;
+		change = false;
 		xo.setValue(newValue)
-		ok( changed )
+		ok( change )
 		
 	})
 	
-	test ("fires the 'changed:transformerKey' event for named transformers", function(){
+	test ("fires the 'change:transformerKey' event for named transformers", function(){
 		
 		var myValue = 123.456
 		var newValue = 789
 		var xo = XOble(myValue);
 		ok( xo.addEvent )
 		
-		var changed = false;
-		xo.addEvent('changed:key', function(){ changed = true })
-		ok(! changed )
+		var change = false;
+		xo.addEvent('change:key', function(){ change = true })
+		ok(! change )
 		
-		changed = false;
+		change = false;
 		xo.defineTransformer('key',function(value){return value})
-		ok( changed )
+		ok( change )
 		
-		changed = false;
+		change = false;
 		xo.setValue(myValue)
-		ok(! changed )
+		ok(! change )
 		
-		changed = false;
+		change = false;
 		xo.setValue(String(myValue), "Must use strict comparison to determine when to fire")
-		ok( changed )
+		ok( change )
 		
-		changed = false;
+		change = false;
 		xo.setValue(newValue)
-		ok( changed )
+		ok( change )
 		
 	})
 	
